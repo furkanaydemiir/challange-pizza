@@ -1,11 +1,12 @@
 import React from 'react'
-
+import OrderPizzaHeader from '../components/OrderPizzaHeader'
+import OrderPizzaMain from '../components/OrderPizzaMain'
+import '../css/orderpizza.css'
 function OrderPizza() {
   return (
-    <div>
-      <h1 style={{ color: "red", backgroundColor: "yellow", padding: "50px" }}>
-        BURASI SİPARİŞ SAYFASI - ŞU AN BURADAYIZ!
-      </h1>
+    <div className='orderContainer'>
+      <OrderPizzaHeader/>
+      <OrderPizzaMain/>
     </div>
   )
 }

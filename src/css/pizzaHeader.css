@@ -1,0 +1,34 @@
+.orderHeader{
+    width: 100%;
+    min-height: 207px;
+    background-color:  #CE2829;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     padding: 20px;
+}
+.headerLogoContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.headerLogo{
+    max-width: 100%;
+}
+.subHeader{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+.mainP{
+    color:  white
+}
+.subP{
+    color: white;
+}
+.createP{
+    color: white;
+}

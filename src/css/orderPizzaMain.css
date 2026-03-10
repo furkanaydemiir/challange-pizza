@@ -1,0 +1,40 @@
+.container {
+    height: 100dvh;
+    max-width: 532px;
+
+}
+
+.product-price {
+    display: flex;
+}
+.product-title{
+    font-weight: 700;
+    font-family: 'Barlow' ;
+}
+.price {
+    font-family: 'Barlow';
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    font-weight: 700;
+}
+
+.number {
+    color: #5F5F5F;
+
+}
+
+.product-point {
+    margin-right: 32px;
+    font-weight: 400;
+    color: #5F5F5F;
+
+}
+
+.product-description {
+    font-weight: 400;
+    font-size: 16px;
+    color: #5F5F5F;
+    font-family: 'Barlow';
+}
