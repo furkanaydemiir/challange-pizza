@@ -1,11 +1,10 @@
-.orderContainer{
+.orderContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-  max-width: 100vw;
-  box-sizing: border-box;
-  padding: 0 10px; /* iç boşluk vererek taşmayı önler */
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding: 0 10px;
 
 }

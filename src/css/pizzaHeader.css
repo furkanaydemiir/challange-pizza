@@ -1,34 +1,41 @@
 .orderHeader{
-    width: 100%;
+    min-width: 100%;
     min-height: 207px;
     background-color:  #CE2829;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: "Barlow";
     justify-content: center;
-    align-items: center;
-     padding: 20px;
-}
-.headerLogoContainer{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
 }
 .headerLogo{
-    max-width: 100%;
+    margin-left: 76px;
 }
+.headerLogoContainer{
+    height: 100%;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .subHeader{
+    width: 100%;
+    margin-top: 32px;
+    margin-right: 32px;
     display: flex;
     flex-direction: row;
     gap: 4px;
+    text-align: start;
 }
 .mainP{
-    color:  white
+    color: #FAF7F2
 }
 .subP{
-    color: white;
+    color: #FFFFFF
 }
 .createP{
-    color: white;
+    color: #FFFFFF
 }

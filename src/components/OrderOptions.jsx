@@ -2,16 +2,42 @@ import React, { useEffect, useState } from 'react'
 import '../css/OrderOptions.css'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 function OrderOptions() {
+    const MY_API_KEY = import.meta.env.VITE_REQRES_API_KEY
+
     const navigate = useNavigate()
     const [size, setSize] = useState("")
     const [dough, setDough] = useState("")
     const [ingredientState, setIngredientState] = useState([])
     const [note, setNote] = useState("")
     const [count, setCount] = useState(1)
-   
-    
-   const pizza = count*85.50
+    const [name,setName] = useState("")
+    const payload = [{
+        size: size,
+        dough: dough,
+        ingredientState: ingredientState,
+        note: note,
+        name:name
+    }]
+    const sendSubmit = async (payload) => {
+        try {
+            const response = await axios.post(
+                'https://reqres.in/api/pizza',
+                payload,
+                {
+                    headers: {
+                        'x-api-key': MY_API_KEY
+                    }
+                }
+            )
+            console.log("API YANII:", response.data)
+        } catch (error) {
+            console.log("Bir hata oluştu", error)
+        }
+    }
+
+    const pizza = count * 85.50
 
     const increment = (e) => {
         e.preventDefault()
@@ -22,6 +48,9 @@ function OrderOptions() {
         setCount(count => count - 1)
     }
 
+   const handleNameChange = (e)=>{
+    setName(e.target.value)
+   }
 
     const handleNoteChange = (e) => {
         setNote(e.target.value)
@@ -46,20 +75,30 @@ function OrderOptions() {
     }
 
     const ingredients = ["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Domates", "Mısır", "Mantar", "Jalepeno", "Sarımsak", "Biber", "Turşu", "Ananas", "Kabak", "Pastırma"]
-    
-     const handleSubmit = (e) =>{
+
+    const handleSubmit = (e) => {
         e.preventDefault()
-        if(size===""){
+        if (size === "") {
             toast.error("Lütfen Boyut Seçimi Yapınız!")
             return
-        }else{
-            if(dough===""){
-                toast.error("Lütfen Hamur Seçimi Yapınız!")
-                return
-            }
-        }
+        } else if (dough === "") {
+            toast.error("Lütfen Hamur Seçimi Yapınız!")
+            return
+        } else if (ingredientState.length < 4) {
+            toast.error("En az 4 malzeme seçmeniz gerekmekte!")
+        } else if (name.trim().length===0){
+            toast.error("Lütfen isminizi girniz!")
+            return
+        }else if(name.trim().length<3){
+            toast.error("İsim bölümü 3 karakterden az olamaz!")
+            return
+        }else{    
+        sendSubmit(payload)
         navigate('/SuccessOrder')
-     }
+        
+        }
+
+    }
 
     return (
         <form onSubmit={handleSubmit} className='order-form'>
@@ -92,7 +131,7 @@ function OrderOptions() {
             <fieldset className='material-selector'>
                 <div className='material-selection-title'>
                     <h4>Ek Malzemeler</h4>
-                    <p style={{color:"grey"}}>En fazla 10 malzeme seçebilirsiniz. 5₺</p>
+                    <p style={{ color: "grey" }}>En fazla 10 malzeme seçebilirsiniz. 5₺ (En az 4 malzeme seçmelisiniz.)</p>
                     <div className='checkbox-container'>
                         {
                             ingredients.map((ingredient) => (
@@ -105,33 +144,36 @@ function OrderOptions() {
                 </div>
             </fieldset>
             <fieldset className='order-note'>
-                <h4>Sipariş Notu</h4>
+                <h4 className='h4-note'>Sipariş Notu</h4>
+                <input type="text" value={name} onChange={handleNameChange} className='order-input' placeholder='Lütfen İsiminizi Girin (Zorunlu)' />
+
                 <input type="text" value={note} onChange={handleNoteChange} className='order-input' placeholder='Siparişinize eklemek istediğiniz bir not var mı?' />
             </fieldset>
+            <hr />
             <fieldset className='order-detail'>
                 <div className='pizza-count'>
                     <button onClick={decrement} className='count-button'>-</button>
                     <p className='count'>{count}</p>
                     <button onClick={increment} className='count-button'>+</button>
                 </div>
-             <div>
-                <div className="order-container">
-                    <h3>Sipariş Detayı</h3>
+                <div>
+                    <div className="order-container">
+                        <h4>Sipariş Toplamı</h4>
 
-                    <div className="row">
-                        <span>Seçimler</span>
-                        <span>{ingredientState.length*5}.00₺</span>
-                    </div>
+                        <div className="row">
+                            <span>Seçimler</span>
+                            <span>{ingredientState.length * 5}.00₺</span>
+                        </div>
 
-                    <div className="row sum">
-                        <span>Toplam</span>
-                        <span>{pizza+(ingredientState.length*5)}₺</span>
+                        <div className="row sum">
+                            <span>Toplam</span>
+                            <span>{pizza + (ingredientState.length * 5)}₺</span>
+                        </div>
                     </div>
-                </div>
-                <button className='order-button' type='submit' style={{ width: "100%" }}>SİPARİŞ VER</button>
+                    <button className='order-button' type='submit' style={{ width: "100%" }}>SİPARİŞ VER</button>
                 </div>
             </fieldset>
-            
+
         </form>
     )
 }
