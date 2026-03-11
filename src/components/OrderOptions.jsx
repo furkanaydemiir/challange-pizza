@@ -3,6 +3,10 @@ import '../css/OrderOptions.css'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import SizeSelection from './OrderOptionComponents/SizeSelection'
+import MaterialSelection from './OrderOptionComponents/MaterialSelection'
+import OrderNote from '../components/OrderOptionComponents/OrderNote'
+import OrderDetail from './OrderOptionComponents/OrderDetail'
 function OrderOptions() {
     const MY_API_KEY = import.meta.env.VITE_REQRES_API_KEY
     const navigate = useNavigate()
@@ -35,50 +39,9 @@ function OrderOptions() {
             console.log("Bir hata oluştu", error)
         }
     }
+    
 
-    const pizza = count * 85.50
-
-    const increment = (e) => {
-        e.preventDefault()
-        setCount(count => count + 1)
-    }
-    const decrement = (e) => {
-        e.preventDefault()
-        if(count<=0){
-            return
-        }
-        setCount(count => count - 1)
-        
-    }
-
-    const handleNameChange = (e) => {
-        setName(e.target.value)
-    }
-
-    const handleNoteChange = (e) => {
-        setNote(e.target.value)
-    }
-    const handleSizeChange = (e) => {
-        setSize(e.target.value)
-    }
-    const handleDoughChange = (e) => {
-        setDough(e.target.value)
-    }
-    const handleIngredientChange = (e) => {
-        const value = e.target.value
-        if (ingredientState.includes(value)) {
-            setIngredientState(ingredientState.filter(i => i !== value))
-        } else {
-            if (ingredientState.length == 9) {
-                toast.warning("En fazla 10 malzeme seçebilirsin")
-
-            }
-            setIngredientState([...ingredientState, value])
-        }
-    }
-
-    const ingredients = ["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Domates", "Mısır", "Mantar", "Jalepeno", "Sarımsak", "Biber", "Turşu", "Ananas", "Kabak", "Pastırma"]
-
+  
     const handleSubmit = (e) => {
         e.preventDefault()
         if (size === "") {
@@ -105,77 +68,19 @@ function OrderOptions() {
 
     return (
         <form onSubmit={handleSubmit} className='order-form'>
-            <fieldset className='size-selector'>
-                <legend className='size-title'>Boyut Seç
-                    <span className='required'>*</span>
-                </legend>
-                <div className='radio-group'>
-                    <label>
-                        <input name='size' type="radio" value="Küçük" checked={size === "Küçük"} onChange={handleSizeChange} />Küçük
-                    </label>
-                    <label>
-                        <input name='size' type="radio" value="Orta" checked={size === "Orta"} onChange={handleSizeChange} />Orta
-                    </label>
-                    <label>
-                        <input name='size' type="radio" value="Büyük" checked={size === "Büyük"} onChange={handleSizeChange} />Büyük
-                    </label>
-                </div>
-
-                <div className='dough-selection'>
-                    <h4 className='dough-title'>Hamur Seç<span className='required'>*</span></h4>
-                    <select value={dough} onChange={handleDoughChange}>
-                        <option value="" disabled>Hamur Kalınlığı</option>
-                        <option>İnce Hamur</option>
-                        <option>Orta Hamur</option>
-                        <option>Kalın Hamur</option>
-                    </select>
-                </div>
-            </fieldset>
-            <fieldset className='material-selector'>
-                <div className='material-selection-title'>
-                    <h4>Ek Malzemeler</h4>
-                    <p style={{ color: "grey" }}>En fazla 10 malzeme seçebilirsiniz. 5₺ (En az 4 malzeme seçmelisiniz.)</p>
-                    <div className='checkbox-container'>
-                        {
-                            ingredients.map((ingredient) => (
-                                <label className='checkbox-item' key={ingredient}>
-                                    <input disabled={ingredientState.length >= 10 && !ingredientState.includes(ingredient)} onClick={handleIngredientChange} className='material' type='checkbox' value={ingredient} /><span>{ingredient}</span>
-                                </label>
-                            ))
-                        }
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset className='order-note'>
-                <h4 className='h4-note'>Sipariş Notu</h4>
-                <input type="text" value={name} onChange={handleNameChange} className='order-input' placeholder='Lütfen İsiminizi Girin (Zorunlu)' />
-
-                <input type="text" value={note} onChange={handleNoteChange} className='order-input' placeholder='Siparişinize eklemek istediğiniz bir not var mı?' />
-            </fieldset>
+            <div className='size-selector'>
+               <SizeSelection dough={dough} setDough={setDough} size={size} setSize={setSize}/>
+            </div>
+            <div className='material-selector'>
+              <MaterialSelection ingredientState={ingredientState} setIngredientState={setIngredientState}/>
+            </div>
+            <div className='order-note'>
+             <OrderNote name={setName} setName={setName} note={note} setNote={setNote}/>
+            </div>
             <hr />
-            <fieldset className='order-detail'>
-                <div className='pizza-count'>
-                    <button onClick={decrement} className='count-button'>-</button>
-                    <p className='count'>{count}</p>
-                    <button onClick={increment} className='count-button'>+</button>
-                </div>
-                <div>
-                    <div className="order-container">
-                        <h4>Sipariş Toplamı</h4>
-
-                        <div className="row">
-                            <span>Seçimler</span>
-                            <span>{ingredientState.length * 5}.00₺</span>
-                        </div>
-
-                        <div className="row sum">
-                            <span>Toplam</span>
-                            <span>{pizza + (ingredientState.length * 5)}₺</span>
-                        </div>
-                    </div>
-                    <button className='order-button' type='submit' style={{ width: "100%" }}>SİPARİŞ VER</button>
-                </div>
-            </fieldset>
+            <div className='order-detail'>
+            <OrderDetail ingredientState={ingredientState}   count={count} setCount={setCount}/>
+            </div>
 
         </form>
     )
