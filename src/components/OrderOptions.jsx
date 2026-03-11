@@ -5,20 +5,19 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 function OrderOptions() {
     const MY_API_KEY = import.meta.env.VITE_REQRES_API_KEY
-
     const navigate = useNavigate()
     const [size, setSize] = useState("")
     const [dough, setDough] = useState("")
     const [ingredientState, setIngredientState] = useState([])
     const [note, setNote] = useState("")
     const [count, setCount] = useState(1)
-    const [name,setName] = useState("")
+    const [name, setName] = useState("")
     const payload = [{
         size: size,
         dough: dough,
         ingredientState: ingredientState,
         note: note,
-        name:name
+        name: name
     }]
     const sendSubmit = async (payload) => {
         try {
@@ -45,12 +44,16 @@ function OrderOptions() {
     }
     const decrement = (e) => {
         e.preventDefault()
+        if(count<=0){
+            return
+        }
         setCount(count => count - 1)
+        
     }
 
-   const handleNameChange = (e)=>{
-    setName(e.target.value)
-   }
+    const handleNameChange = (e) => {
+        setName(e.target.value)
+    }
 
     const handleNoteChange = (e) => {
         setNote(e.target.value)
@@ -86,16 +89,16 @@ function OrderOptions() {
             return
         } else if (ingredientState.length < 4) {
             toast.error("En az 4 malzeme seçmeniz gerekmekte!")
-        } else if (name.trim().length===0){
+        } else if (name.trim().length === 0) {
             toast.error("Lütfen isminizi girniz!")
             return
-        }else if(name.trim().length<3){
+        } else if (name.trim().length < 3) {
             toast.error("İsim bölümü 3 karakterden az olamaz!")
             return
-        }else{    
-        sendSubmit(payload)
-        navigate('/SuccessOrder')
-        
+        } else {
+            sendSubmit(payload)
+            navigate('/SuccessOrder')
+
         }
 
     }
@@ -121,7 +124,7 @@ function OrderOptions() {
                 <div className='dough-selection'>
                     <h4 className='dough-title'>Hamur Seç<span className='required'>*</span></h4>
                     <select value={dough} onChange={handleDoughChange}>
-                        <option value="" disabled selected>Hamur Kalınlığı</option>
+                        <option value="" disabled>Hamur Kalınlığı</option>
                         <option>İnce Hamur</option>
                         <option>Orta Hamur</option>
                         <option>Kalın Hamur</option>
