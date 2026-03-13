@@ -46,3 +46,8 @@
     font-family: inherit;
 }
 
+@media (max-height:840px) {
+    .home {
+        background-position: center 20%;
+    }
+}
