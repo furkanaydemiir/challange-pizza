@@ -16,14 +16,16 @@ function OrderOptions() {
     const [note, setNote] = useState("")
     const [count, setCount] = useState(1)
     const [name, setName] = useState("")
-    const payload = [{
-        size: size,
-        dough: dough,
-        ingredientState: ingredientState,
-        note: note,
-        name: name
-    }]
-    const sendSubmit = async (payload) => {
+
+    const sendSubmit = async () => {
+        const payload = [{
+            pizzaId: crypto.randomUUID(),
+            size: size,
+            dough: dough,
+            ingredientState: ingredientState,
+            note: note,
+            name: name
+        }]
         try {
             const response = await axios.post(
                 'https://reqres.in/api/pizza',
@@ -39,9 +41,9 @@ function OrderOptions() {
             console.log("Bir hata oluştu", error)
         }
     }
-    
 
-  
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
         if (size === "") {
@@ -59,7 +61,7 @@ function OrderOptions() {
             toast.error("İsim bölümü 3 karakterden az olamaz!")
             return
         } else {
-            sendSubmit(payload)
+            sendSubmit()
             navigate('/SuccessOrder')
 
         }
@@ -69,17 +71,17 @@ function OrderOptions() {
     return (
         <form onSubmit={handleSubmit} className='order-form'>
             <div className='size-selector'>
-               <SizeSelection dough={dough} setDough={setDough} size={size} setSize={setSize}/>
+                <SizeSelection dough={dough} setDough={setDough} size={size} setSize={setSize} />
             </div>
             <div className='material-selector'>
-              <MaterialSelection ingredientState={ingredientState} setIngredientState={setIngredientState}/>
+                <MaterialSelection ingredientState={ingredientState} setIngredientState={setIngredientState} />
             </div>
             <div className='order-note'>
-             <OrderNote name={setName} setName={setName} note={note} setNote={setNote}/>
+                <OrderNote name={setName} setName={setName} note={note} setNote={setNote} />
             </div>
             <hr />
             <div className='order-detail'>
-            <OrderDetail ingredientState={ingredientState}   count={count} setCount={setCount}/>
+                <OrderDetail ingredientState={ingredientState} count={count} setCount={setCount} />
             </div>
 
         </form>

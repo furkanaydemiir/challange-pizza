@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../css/OrderOptionComponentsCSS/MaterialSelection.css'
+import { toast } from 'sonner'
 
 function MaterialSelection({ingredientState,setIngredientState}) {
     const ingredients = ["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Domates", "Mısır", "Mantar", "Jalepeno", "Sarımsak", "Biber", "Turşu", "Ananas", "Kabak", "Pastırma"]
