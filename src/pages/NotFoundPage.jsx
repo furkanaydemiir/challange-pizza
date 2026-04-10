@@ -1,8 +1,14 @@
 import React from 'react'
+import Deneme from '../deneme/Deneme'
+import Footer from '../components/Footer'
 
 function NotFoundPage() {
   return (
-    <div>Böyle bir yer yok</div>
+    <div>
+      <Deneme value={"Not Found Page"}/>
+      Böyle bir yer yok
+      <Footer/>
+      </div>
   )
 }
 
