@@ -68,11 +68,21 @@ function OrderOptions() {
       return;
     } else {
       sendSubmit();
-      navigate("/SuccessOrder");
+      navigate("/SuccessOrder",{
+        state:{
+          size,
+          dough,
+          ingredientState,
+          note,
+          name,
+          count
+        }
+      });
     }
   };
 
   return (
+    
       <form onSubmit={handleSubmit} className="order-form">
       <div ref={ref} className="size-selector">
         <SizeSelection

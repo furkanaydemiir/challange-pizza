@@ -1,51 +1,203 @@
 .home {
-    width: 100%;
-    height: 100dvh;
-    background-image: url('../../images/iteration-1-images/home-banner.png');
-    background-position: center 90%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
+  width: 100%;
+  height: 100dvh;
+  background-image: url("../../images/iteration-1-images/home-banner.png");
+  background-position: center 90%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .home-logo {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    padding: 0;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 0;
 }
 
 .home-caption h1 {
-    font-family: "Roboto Condensed", sans-serif;
-    font-weight: 300 !important;
-    font-size: 70px;
-    margin-bottom: 15px;
-    margin: 0;
-    color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300 !important;
+  font-size: 70px;
+  margin-bottom: 15px;
+  margin: 0;
+  color: white;
 }
 
 .home-button {
-    margin-top: 20px;
-    width: 200px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: #FDC913;
-    border: none;
-    cursor: pointer;
-    color: #292929;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-family: inherit;
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #fdc913;
+  border: none;
+  cursor: pointer;
+  color: #292929;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-family: inherit;
 }
 
-@media (max-height:840px) {
-    .home {
-        background-position: center 20%;
-    }
+.icon-list {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  gap: 4px;
+}
+.icon-list li {
+  width: 149px;
+  height: 66px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Barlow", sans-serif;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 18px;
+  border-radius: 50px;
+}
+.banner {
+  display: flex;
+  align-items: center;
+  margin-top: 92px;
+  height: auto;
+  width: 100%;
+  flex-direction: column;
+}
+.banner-area {
+  width: 1072px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.firstCard {
+  background-image: url("../../images/iteration-2-images/cta/kart-1.png");
+  width: 532px;
+  height: 450px;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.firstCardDescription {
+  padding: 30px;
+}
+.quatra {
+  font-family: "Quattrocento", serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 68px;
+  line-height: 72px;
+  margin: 0;
+  color: white;
+}
+.pizza-name {
+  font-family: "Barlow";
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+}
+.hackathon-div{
+  width: 532px;
+  height: 200px;
+  background-image: url('../../images//iteration-2-images/cta/kart-3.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 12px;
+}
+.npm{
+   font-family: 'Barlow',sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  margin: 0;
+}
+.burger-div{
+  background-image: url('../../images//iteration-2-images/cta/kart-2.png');
+   background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 12px;
+  width: 532px;
+  height: 200px;
+}
+.text {
+  color: #fdc913;
+  font-family: "Satisfy", cursive;
+  font-size: 28px;
+  padding: 0;
+  text-align: center;
+  margin: 0;
+}
+.text-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-list li:hover {
+ background-color: #292929;
+ color: white;
+ transition: 0.4s;
+}
+.pizza-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+.pizza{
+  width: 334px;
+  height: 419px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.pizza-text{
+  font-family: "Barlow",sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+.pizza-score{
+  font-family: "Barlow",sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1B1B1B;
+}
+.pizza-price{
+  font-family: "Barlow",sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+
+}
+.price{
+ width: 100%;
+ display: flex;
+ flex-direction: row; 
+ justify-content: center;
+ align-items: center;
+}
+@media (max-height: 840px) {
+  .home {
+    background-position: center 20%;
+  }
+  
 }

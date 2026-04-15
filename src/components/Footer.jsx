@@ -10,6 +10,7 @@ import image3 from '../../images/iteration-2-images/footer/insta/li-2.png'
 import image4 from '../../images/iteration-2-images/footer/insta/li-3.png'
 import image5 from '../../images/iteration-2-images/footer/insta/li-4.png'
 import image6 from '../../images/iteration-2-images/footer/insta/li-5.png'
+import { FaTwitter } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -69,7 +70,8 @@ function Footer() {
        </div>
        <div className='twitter-area'>
          <p>© 2023 Teknolojik Yemekler</p>
-         <p>Twitter Icon</p>
+         <FaTwitter size={26}  />
+
        </div>
        </div>
     </footer>

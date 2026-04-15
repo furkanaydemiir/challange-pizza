@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import '../css/pizzaHeader.css'
 import logo from '../../images/iteration-1-images/logo.svg'
 
 function OrderPizzaHeader() {
+  useEffect(()=>{
+   headerRef.current.scrollIntoView({behavior:"smooth"})
+  },[])
+  const headerRef = useRef()
   return (
     <header className='orderHeader' >
-      <div className='headerLogoContainer'>
+      <div ref={headerRef} className='headerLogoContainer'>
         <img className='headerLogo' src={logo} alt="" />
-        <div className='subHeader'>
-          <p className='mainP'>Ana Sayfa -</p>
-          <p className='createP'>Sipariş Oluştur</p>
-        </div>
+        
       </div>
-
     </header>
   )
 }
